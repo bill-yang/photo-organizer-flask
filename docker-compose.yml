@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+    #docker run --rm -it -v ./flask-info:/opt/app:ro -p 5000:5000 flask-info python3 /opt/app/index.py
+    flask-app:
+        build:
+            context: .
+            dockerfile: Dockerfile.dev
+        volumes:
+            - ./app:/opt/app
+        ports:
+            - "5000:5000"
+        links:
+            - db
+    db:
+        image: mariadb:latest
+        environment:
+            MYSQL_ROOT_PASSWORD: 'secret'
+            MYSQL_USER: 'dev'
+            MYSQL_PASSWORD: 'dev'
+            MYSQL_DATABASE: 'dev'
+        volumes:
+            - mysqldata:/var/lib/mysql
+        ports:
+            - 13306:3306
+volumes:
+    mysqldata: {}

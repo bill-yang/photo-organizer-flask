@@ -1,0 +1,20 @@
+
+.DS_Store
+Thumbs.db
+logs
+*.log
+
+# generated content output
+output/*
+
+# ssh secret files
+ssh/*
+
+# Environments
+.env
+.venv
+env/
+venv/
+
+# cache files
+*_cache/*
